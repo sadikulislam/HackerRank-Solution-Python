@@ -1,7 +1,11 @@
 import re
+import email.utils
+
 n = int(input())
+
 for i in range(n):
-    x=input()
-    match = re.search(r'[\w.-]+@[\w.-]+', x)
+    x = email.utils.parseaddr(input())
+    match = re.match(r'^[a-zA-Z][\w.-]+@[a-zA-Z]+\.[a-zA-z]{1,3}$', x[1])
+
     if match:
-        print(x)
+        print(email.utils.formataddr(x))
